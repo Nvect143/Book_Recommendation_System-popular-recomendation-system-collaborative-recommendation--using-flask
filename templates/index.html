@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,400;1,100;1,700&family=Rubik:wght@400;500;600&family=Yellowtail&display=swap');
+
+:root {
+    --dark1: #21201E;
+    --dark2: #282525;
+    --brand: #129894;
+    --white: #ffffff;
+    --body: #D0C2C2;
+}
+
+body {
+    background: #21201E;
+    font-family: 'Rubik', sans-serif;
+    color: var(--body);
+}
+
+p{
+  font-size: 10px;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 600;
+    color: var(--white);
+}
+
+.frame1 {
+    transition: all 0.4s ease;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.frame1:hover {
+    color: var(--brand);
+}
+
+.btn {
+    
+    background-color: transparent;
+    border-color: var(--brand);
+}
+
+.btn:hover {
+    
+    background-color: var(--brand);
+    border-color: rgb(248, 90, 119);
+}
+
+.form-control {
+  background-color: var(--body);
+  border-color: var(--dark1);
+}
+
+.text-white{
+  color: var(--body);
+  font-weight: 300;
+  font-size: 40px;
+}
+
+.text-white2{
+  color: var(--body);
+  font-weight: 200;
+  font-size: 13px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+#home{
+  margin-top: 150px;
+}
+
+.divider {
+    border: 1.5px solid rgb(87, 79, 79);
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#contacts {
+  margin-top: 40px;
+}
+
+form .form-control {
+    background-color: transparent;
+    border-color: rgba(255,255,255,0.2);
+}
+
+form .form-control:focus {
+    box-shadow: none;
+    border-color: var(--brand);
+    background-color: rgba(255,255,255,0.2);
+    color: var(--white);
+}
+
+.card-body{
+  background-color: var(--dark2);
+  height: 460px;
+  color: var(--brand);
+}
+
+.card{
+  border-color: var(--brand);
+}
+
+footer {
+    background-color: var(--dark2);
+    color: var(--white);
+}
+
+footer a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--brand);
+}
+
+</style>
+<body style="background-color:black">
+
+  <nav class="navbar fixed-top py-3 navbar-expand-lg bg-dark navigation " style="color: var(--dark1);">
+    <div class="container">
+      <a class="navbar-brand" href="#" style="font-size:40px; font-weight: 600;"><span style="color: rgb(248, 90, 119);">Book</span><span style="color: var(--brand);"> Keeda</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" style="padding-left: 30%;">
+            <a class="frame1 nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item" style="padding-left: 30%;">
+            <a class="frame1 nav-link" href="/recommend">Recommend</a>
+          </li>
+          <li class="nav-item" style="padding-left: 30%;">
+            <a class="frame1 nav-link" href="#contact">Contacts</a>
+          </li>
+        </ul>
+        
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search your book" style="color: var(--brand);">
+          <button class="btn btn-outline-success" type="submit" style="color:rgb(248, 90, 119);">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+    
+
+     <section id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-white">Top 50 Books</h1>
+            </div>
+            
+            {% for i in range(book_name|length) %}
+            
+                <div class="col-md-2" style="margin-top:50px">
+                      <div class="card">
+                          <div class="card-body">
+                              <img src="{{ image[i] }}"  class="card-img-top">
+                              <h2 class="text-white2">{{ book_name[i] }}</h2>
+                              <h4 class="text-white2">{{ author[i] }}</h4>
+                              <p class="text-white2">Votes - {{ votes[i] }}</p>
+                              <p class="text-white2">Rating - {{ rating[i] }}</p>
+                          </div>
+                      </div>
+                </div>
+            
+            {% endfor %}
+
+        </div>
+    </div>
+  </section>
+
+  <div class="container divider"></div>
+
+  <!--Contacts-->
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 intro">
+          <h1><span class="red">Get</span> in <span class="text-brand">touch</span></h1>
+          <p>If you wanna contact me or wanna join my team then its my pleasure.</p>
+        </div>
+      </div>
+      <form action="#" class="row g-3">
+        <div class="form-group col-12">
+          <input type="text" class="form-control" placeholder="Enter your Name">
+        </div>
+        <div class="form-group col-12">
+          <input type="text" class="form-control" placeholder="Enter your Email">
+        </div>
+        <div class="form-group col-12">
+          <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Enter Message"></textarea>
+        </div>
+        <div>
+          <button class="btn btn-brand">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="container divider"></div>
+   <!--Footer-->
+   <footer class="py-4">
+    <div class="container">
+      <div class="row justify-item-center">
+        <div class="col-md-9">
+          <div class="mb-0"><p>@ 2022 all rights conserved Designed by Nadeem Ashraf</p></div>
+          </div>
+          <div class="col-auto">
+            <a href="#" class="me-3">Twitter</a>
+            <a href="#" class="me-3">Instagram</a>
+            <a href="#">Linkedin</a>
+          </div>
+        </div>
+      </div>
+  </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>
